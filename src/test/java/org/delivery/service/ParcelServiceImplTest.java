@@ -1,5 +1,9 @@
 package org.delivery.service;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.when;
+
 import org.delivery.dto.DeliveryData;
 import org.delivery.dto.ParcelData;
 import org.delivery.dto.ParcelResponse;
@@ -11,10 +15,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class ParcelServiceImplTest {
@@ -31,10 +31,10 @@ class ParcelServiceImplTest {
     @Test
     void whenNewParcelCorrect_thenReturnResponse() {
         // given
-        ParcelData p = new ParcelData("u","t","l","s");
-        DeliveryData d = new DeliveryData("u","t","S","L","D");
-        when(parcelRepository.get("u","t")).thenReturn(null);
-        when(deliveryRepository.get("u","t")).thenReturn(d);
+        ParcelData p = new ParcelData("u", "t", "l", "s");
+        DeliveryData d = new DeliveryData("u", "t", "S", "L", "D");
+        when(parcelRepository.get("u", "t")).thenReturn(null);
+        when(deliveryRepository.get("u", "t")).thenReturn(d);
 
         // when
         ParcelResponse parcelResponse = parcelService.addParcel(p);
@@ -45,8 +45,8 @@ class ParcelServiceImplTest {
     @Test
     void whenParcelExists_thenThrow() {
         // given
-        ParcelData p = new ParcelData("u","t","l","s");
-        when(parcelRepository.get("u","t")).thenReturn(p);
+        ParcelData p = new ParcelData("u", "t", "l", "s");
+        when(parcelRepository.get("u", "t")).thenReturn(p);
 
         // when
         // then
@@ -56,9 +56,9 @@ class ParcelServiceImplTest {
     @Test
     void whenMissingBoth_thenThrow() {
         // given
-        ParcelData p = new ParcelData("u","t","l","s");
-        when(parcelRepository.get("u","t")).thenReturn(null);
-        when(deliveryRepository.get("u","t")).thenReturn(null);
+        ParcelData p = new ParcelData("u", "t", "l", "s");
+        when(parcelRepository.get("u", "t")).thenReturn(null);
+        when(deliveryRepository.get("u", "t")).thenReturn(null);
 
         // when
         // then

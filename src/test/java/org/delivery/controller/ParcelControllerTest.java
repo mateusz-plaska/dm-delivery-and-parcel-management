@@ -1,5 +1,10 @@
 package org.delivery.controller;
 
+import static org.hamcrest.Matchers.containsString;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.delivery.dto.ParcelData;
 import org.delivery.dto.ParcelResponse;
@@ -11,11 +16,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
-
-import static org.hamcrest.Matchers.containsString;
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(ParcelController.class)
 class ParcelControllerTest {
@@ -49,9 +49,8 @@ class ParcelControllerTest {
     @Test
     void whenDuplicateParcel_thenReturnsBadRequest() throws Exception {
         // given
-        ParcelData request = new ParcelData("user1","track1","lockerA","mały");
-        when(parcelService.addParcel(request))
-                .thenThrow(new IllegalIdException("already exists"));
+        ParcelData request = new ParcelData("user1", "track1", "lockerA", "mały");
+        when(parcelService.addParcel(request)).thenThrow(new IllegalIdException("already exists"));
 
         // when
         mockMvc.perform(post("/packages/send")

@@ -27,8 +27,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(IllegalIdException.class)
-    public ResponseEntity<ErrorWrapper> handleIllegalIdException(
-            IllegalIdException ex, HttpServletRequest request) {
+    public ResponseEntity<ErrorWrapper> handleIllegalIdException(IllegalIdException ex, HttpServletRequest request) {
         HttpStatus status = HttpStatus.BAD_REQUEST;
         String message = "Invalid given id";
         ErrorWrapper errorWrapper = new ErrorWrapper(message, request.getRequestURI(), status, ex.getMessage());
@@ -76,8 +75,8 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(SerializationFailedException.class)
-    public ResponseEntity<ErrorWrapper> handleSerializationFailedException(SerializationFailedException ex,
-                                                                           HttpServletRequest request) {
+    public ResponseEntity<ErrorWrapper> handleSerializationFailedException(
+            SerializationFailedException ex, HttpServletRequest request) {
         HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
         String message = "Serialization failed exception";
         ErrorWrapper errorWrapper = new ErrorWrapper(ex.getMessage(), request.getRequestURI(), status, ex.getMessage());

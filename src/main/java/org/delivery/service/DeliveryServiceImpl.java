@@ -16,8 +16,8 @@ public class DeliveryServiceImpl implements DeliveryService {
     public DeliveryData getDeliveryInfo(String userId, String trackingNumber) {
         DeliveryData deliveryData = deliveryRepository.get(userId, trackingNumber);
         if (deliveryData == null) {
-            throw new ResourceNotFoundException("Delivery not found for userId=" + userId
-                    + ", and trackingNumber=" + trackingNumber);
+            throw new ResourceNotFoundException(
+                    "Delivery not found for userId=" + userId + ", and trackingNumber=" + trackingNumber);
         }
         return deliveryData;
     }

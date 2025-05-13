@@ -2,13 +2,11 @@ package org.delivery.inMemory;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
-import org.springframework.core.serializer.support.SerializationFailedException;
-
 import java.io.*;
 import java.util.*;
+import org.springframework.core.serializer.support.SerializationFailedException;
 
-public abstract class InMemoryRepositoryImpl<V extends Serializable>
-        implements InMemoryRepository<V> {
+public abstract class InMemoryRepositoryImpl<V extends Serializable> implements InMemoryRepository<V> {
 
     protected final transient File file;
     protected Map<String, V> data;
@@ -67,8 +65,8 @@ public abstract class InMemoryRepositoryImpl<V extends Serializable>
             return;
         }
 
-        try(FileInputStream fileInput = new FileInputStream(file);
-            ObjectInputStream input = new ObjectInputStream(fileInput)) {
+        try (FileInputStream fileInput = new FileInputStream(file);
+                ObjectInputStream input = new ObjectInputStream(fileInput)) {
 
             this.data = (Map<String, V>) input.readObject();
         } catch (IOException | ClassNotFoundException e) {
@@ -85,7 +83,7 @@ public abstract class InMemoryRepositoryImpl<V extends Serializable>
                         "Failed to create directory for path: " + file.getAbsolutePath());
 
         try (FileOutputStream fileOutput = new FileOutputStream(file);
-             ObjectOutputStream output = new ObjectOutputStream(fileOutput)) {
+                ObjectOutputStream output = new ObjectOutputStream(fileOutput)) {
 
             output.writeObject(data);
         } catch (IOException e) {

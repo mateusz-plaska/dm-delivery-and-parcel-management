@@ -1,10 +1,9 @@
 package org.delivery.inMemory;
 
+import java.util.List;
 import org.delivery.dto.ParcelData;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
 
 @Component("parcelRepository")
 public class ParcelRepository extends InMemoryRepositoryImpl<ParcelData> {
@@ -20,8 +19,7 @@ public class ParcelRepository extends InMemoryRepositoryImpl<ParcelData> {
                 new ParcelData("104", "223344", "lockerB", "średni"),
                 new ParcelData("213", "123456", "lockerC", "duży"),
                 new ParcelData("202", "778899", "lockerD", "mały"),
-                new ParcelData("307", "334455", "lockerB", "średni")
-        );
+                new ParcelData("307", "334455", "lockerB", "średni"));
         parcels.forEach(p -> data.put(compositeKey(p.userId(), p.trackingNumber()), p));
     }
 }

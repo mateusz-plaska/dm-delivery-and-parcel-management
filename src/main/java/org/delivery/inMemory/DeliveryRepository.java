@@ -1,11 +1,9 @@
 package org.delivery.inMemory;
 
-import org.delivery.dto.DeliveryData;
-import org.springframework.stereotype.Component;
-import org.springframework.beans.factory.annotation.Value;
-
 import java.util.List;
-
+import org.delivery.dto.DeliveryData;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 @Component("deliveryRepository")
 public class DeliveryRepository extends InMemoryRepositoryImpl<DeliveryData> {
@@ -26,8 +24,7 @@ public class DeliveryRepository extends InMemoryRepositoryImpl<DeliveryData> {
                 new DeliveryData("489", "112233", "W przygotowaniu", "Gdańsk, Polska", "2025-05-18T16:45:00Z"),
                 new DeliveryData("456", "654321", "W przygotowaniu", "Kraków, Polska", "2025-05-10T14:30:00Z"),
                 new DeliveryData("406", "889900", "W przygotowaniu", "Katowice, Polska", "2025-05-19T08:30:00Z"),
-                new DeliveryData("403", "990011", "W przygotowaniu", "Łódź, Polska", "2025-05-08T15:15:00Z")
-        );
+                new DeliveryData("403", "990011", "W przygotowaniu", "Łódź, Polska", "2025-05-08T15:15:00Z"));
         deliveries.forEach(d -> data.put(compositeKey(d.getUserId(), d.getTrackingNumber()), d));
     }
 }
