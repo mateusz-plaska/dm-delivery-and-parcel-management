@@ -28,6 +28,6 @@ public class DeliveryRepository extends InMemoryRepositoryImpl<DeliveryData> {
                 new DeliveryData("406", "889900", "W przygotowaniu", "Katowice, Polska", "2025-05-19T08:30:00Z"),
                 new DeliveryData("403", "990011", "W przygotowaniu", "Łódź, Polska", "2025-05-08T15:15:00Z")
         );
-        deliveries.forEach(d -> data.put(compositeKey(d.userId(), d.trackingNumber()), d));
+        deliveries.forEach(d -> data.put(compositeKey(d.getUserId(), d.getTrackingNumber()), d));
     }
 }

@@ -29,6 +29,11 @@ public abstract class InMemoryRepositoryImpl<V extends Serializable>
     }
 
     @Override
+    public void addAll(Set<Map.Entry<String, V>> entries) {
+        entries.forEach(e -> data.put(e.getKey(), e.getValue()));
+    }
+
+    @Override
     public Collection<V> values() {
         return data.values();
     }
@@ -41,6 +46,11 @@ public abstract class InMemoryRepositoryImpl<V extends Serializable>
     @Override
     public Set<Map.Entry<String, V>> entries() {
         return data.entrySet();
+    }
+
+    @Override
+    public void clearAll() {
+        data.clear();
     }
 
     protected abstract void loadInitData();

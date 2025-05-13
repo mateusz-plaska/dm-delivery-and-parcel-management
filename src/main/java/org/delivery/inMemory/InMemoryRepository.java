@@ -8,6 +8,8 @@ import java.util.Set;
 public interface InMemoryRepository<V extends Serializable> {
     void add(String key1, String key2, V value);
 
+    void addAll(Set<Map.Entry<String, V>> entries);
+
     V get(String key1, String key2);
 
     Set<String> keys();
@@ -15,4 +17,6 @@ public interface InMemoryRepository<V extends Serializable> {
     Set<Map.Entry<String, V>> entries();
 
     Collection<V> values();
+
+    void clearAll();
 }
