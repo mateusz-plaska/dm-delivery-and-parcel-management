@@ -16,10 +16,21 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 @RequiredArgsConstructor
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler({ResourceNotFoundException.class, IllegalIdException.class})
-    public ResponseEntity<ErrorWrapper> handleIllegalDataException(Exception ex, HttpServletRequest request) {
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<ErrorWrapper> handleResourceNotFoundException(
+            ResourceNotFoundException ex, HttpServletRequest request) {
+        HttpStatus status = HttpStatus.NOT_FOUND;
+        String message = "Data not found";
+        ErrorWrapper errorWrapper = new ErrorWrapper(message, request.getRequestURI(), status, ex.getMessage());
+        logError(ex.getMessage(), request.getRequestURI(), ex);
+        return new ResponseEntity<>(errorWrapper, status);
+    }
+
+    @ExceptionHandler(IllegalIdException.class)
+    public ResponseEntity<ErrorWrapper> handleIllegalIdException(
+            IllegalIdException ex, HttpServletRequest request) {
         HttpStatus status = HttpStatus.BAD_REQUEST;
-        String message = "Invalid call URL";
+        String message = "Invalid given id";
         ErrorWrapper errorWrapper = new ErrorWrapper(message, request.getRequestURI(), status, ex.getMessage());
         logError(ex.getMessage(), request.getRequestURI(), ex);
         return new ResponseEntity<>(errorWrapper, status);
