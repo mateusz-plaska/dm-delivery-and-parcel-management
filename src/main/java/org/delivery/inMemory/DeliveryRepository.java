@@ -16,6 +16,8 @@ public class DeliveryRepository extends InMemoryRepositoryImpl<DeliveryData> {
     protected void loadInitData() {
         List<DeliveryData> deliveries = List.of(
                 new DeliveryData("101", "445566", "Oczekuje na kuriera", "Poznań, Polska", "2025-05-20T09:00:00Z"),
+                new DeliveryData("101", "111111", "Oczekuje na kuriera", "Poznań, Polska", "2025-05-20T09:00:00Z"),
+                new DeliveryData("101", "222222", "Oczekuje na kuriera", "Poznań, Polska", "2025-05-20T09:00:00Z"),
                 new DeliveryData("104", "223344", "Oczekuje na kuriera", "Szczecin, Polska", "2025-05-22T11:45:00Z"),
                 new DeliveryData("213", "123456", "W transporcie", "Warszawa, Polska", "2025-05-15T10:00:00Z"),
                 new DeliveryData("202", "778899", "W transporcie", "Wrocław, Polska", "2025-05-16T12:30:00Z"),
